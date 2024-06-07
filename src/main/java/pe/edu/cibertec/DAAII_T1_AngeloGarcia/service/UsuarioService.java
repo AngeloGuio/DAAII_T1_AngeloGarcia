@@ -1,11 +1,16 @@
 package pe.edu.cibertec.DAAII_T1_AngeloGarcia.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import pe.edu.cibertec.DAAII_T1_AngeloGarcia.model.bd.Rol;
 import pe.edu.cibertec.DAAII_T1_AngeloGarcia.model.bd.Usuario;
 import pe.edu.cibertec.DAAII_T1_AngeloGarcia.repository.RolRepository;
 import pe.edu.cibertec.DAAII_T1_AngeloGarcia.repository.UsuarioRepository;
+import pe.edu.cibertec.DAAII_T1_AngeloGarcia.util.RandomPassword;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 @Service
 @AllArgsConstructor
@@ -13,6 +18,7 @@ public class UsuarioService implements IUsuarioService{
 
     private UsuarioRepository usuarioRepository;
     private RolRepository rolRepository;
+    private RandomPassword randomPassword;
 
 
     @Override
@@ -22,7 +28,12 @@ public class UsuarioService implements IUsuarioService{
 
     @Override
     public Usuario guardarUsuario(Usuario usuario) {
-        return null;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        usuario.setActivo(true);
+        Rol usuarioRol = rolRepository.findByNomrol("ADMIN");
+        usuario.setRoles(new HashSet<>(Arrays.asList(usuarioRol)));
+        usuario.setPassword(passwordEncoder.encode(randomPassword.generar(7)));
+        return usuarioRepository.save(usuario);
     }
 
     @Override
