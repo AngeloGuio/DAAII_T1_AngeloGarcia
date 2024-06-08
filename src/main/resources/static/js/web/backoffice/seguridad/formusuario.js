@@ -1,3 +1,15 @@
+$(document).on("click", "#btnnuevo", function(){
+    $(".alert-primary").hide().html("");
+    $("#txtnombres").val("");
+    $("#txtapellidos").val("");
+    $("#txttelefono").val("");
+    $("#txtdireccion").val("");
+    $("#txtcorreo").val("");
+    $("#txtdni").val("");
+    $("#txtpassword").val("");
+    $("#hddidcliente").val("0");
+    $("#modalregistro").modal("show");
+});
 $(document).on("click", "#btnagregar", function(){
     $("#txtnombre").val("");
     $("#txtapellido").val("");
@@ -8,9 +20,9 @@ $(document).on("click", "#btnagregar", function(){
     $("#hddidusuario").val("0");
     $("#switchusuario").hide();
     $("#cbactivo").prop("checked", false);
-    $("#divmsgpassword").show();
+    $("#txtpassword").val("");
     $("#btnenviar").hide();
-    $("#modalusuario").modal("show");
+
 });
 $(document).on("click", ".btnactualizar", function(){
     $.ajax({
@@ -48,7 +60,8 @@ $(document).on("click", "#btnguardar", function(){
             nombres: $("#txtnombre").val(),
             apellidos: $("#txtapellido").val(),
             email: $("#txtemail").val(),
-            activo: $("#cbactivo").prop("checked")
+            activo: $("#cbactivo").prop("checked"),
+            password: $("#txtpassword").val()
         }),
         success: function(resultado){
             if(resultado.respuesta){

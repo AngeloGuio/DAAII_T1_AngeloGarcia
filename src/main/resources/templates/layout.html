@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="head">
     <meta charset="UTF-8">
     <title>Title</title>
@@ -23,12 +23,12 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Mantenimientos
+                        Seguridad
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/seguridad/usuario}">Usuarios</a></li>
+                        <li><a class="dropdown-item" th:href="@{/seguridad/pass}">Cambiar Password</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -39,6 +39,9 @@
             <form th:action="@{/logout}" method="post" class="d-flex" role="search">
                 <button class="btn btn-outline-success" type="submit">Cerrar Sesión</button>
             </form>
+            <div class="container">
+                <h1>Bienvenido(a), <span th:text="${session.nomusuario}"></span></h1>
+            </div>
         </div>
     </div>
 </nav>

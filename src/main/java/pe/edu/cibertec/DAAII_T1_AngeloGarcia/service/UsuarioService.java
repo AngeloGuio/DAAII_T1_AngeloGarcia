@@ -53,4 +53,8 @@ public class UsuarioService implements IUsuarioService{
     public Usuario buscarUsuarioXIdUsuario(Integer idusuario) {
         return usuarioRepository.findById(idusuario).orElse(null);
     }
+
+    public Usuario findUserByUserName(String username){
+        return usuarioRepository.findByNomusuario(username);
+    }
 }

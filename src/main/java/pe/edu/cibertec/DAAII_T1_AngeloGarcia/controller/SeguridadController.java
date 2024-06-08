@@ -38,6 +38,7 @@ public class SeguridadController {
             }else{
                 usuario.setNomusuario(usuarioDto.getNomusuario());
                 usuario.setEmail(usuarioDto.getEmail());
+                usuario.setPassword(usuarioDto.getPassword());
                 usuarioService.guardarUsuario(usuario);
             }
         }catch (Exception ex){

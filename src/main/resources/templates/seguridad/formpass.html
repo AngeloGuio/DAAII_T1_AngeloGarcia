@@ -7,24 +7,25 @@
     <script th:src="@{/js/bootstrap/bootstrap.bundle.js}" type="text/javascript"></script>
 </head>
 <body>
+<script th:src="@{/js/web/backoffice/seguridad/formusuario.js}" type="text/javascript"></script>
+<nav th:replace="~{layout::menu}"></nav>
 <div class="container">
     <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto form p-4 pt-5">
-        <h1 class="display-6 mb-4">Iniciar sesión</h1>
-        <form th:action="@{/auth/login}" method="post">
+        <h1 class="display-6 mb-4">Cambiar Contraseña</h1>
+        <form th:action="@{/seguridad/frompass}" method="post">
             <div class="mb-3">
-                <label for="nomusuario" class="form-label">Username</label>
-                <input type="text" class="form-control" name="nomusuario" id="nomusuario" aria-describedby="emailHelp">
+                <label for="password" class="form-label">Nuevo Password</label>
+                <input type="password" class="form-control" name="newpassword" id="newpassword" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label">Repita Password</label>
                 <input type="password" class="form-control" name="password" id="password">
             </div>
-            <button type="submit" class="btn btn-primary mb-4">Iniciar sesión</button>
+            <button type="submit" class="btn btn-primary mb-4">Guardar</button>
             <div class="alert alert-danger d-none" role="alert"></div>
         </form>
-        <p>Si no tienes cuenta con nosotros puedes <a th:href="@{/auth/registrar}">registrarte</a></p>
     </div>
 </div>
-<script th:src="@{/js/web/backoffice/seguridad/frmlogin.js}" type="text/javascript"></script>
+<script th:src="@{/js/web/administracion/frmlogin.js}" type="text/javascript"></script>
 </body>
 </html>

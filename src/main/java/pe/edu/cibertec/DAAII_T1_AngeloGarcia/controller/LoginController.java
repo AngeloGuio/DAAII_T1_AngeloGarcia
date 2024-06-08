@@ -1,16 +1,33 @@
 package pe.edu.cibertec.DAAII_T1_AngeloGarcia.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import pe.edu.cibertec.DAAII_T1_AngeloGarcia.model.bd.Usuario;
+import pe.edu.cibertec.DAAII_T1_AngeloGarcia.service.UsuarioService;
 
 @Controller
 @RequestMapping("/auth")
 public class LoginController {
+    private UsuarioService usuarioService;
     @GetMapping("/login")
     public String login(){
         return "auth/frmlogin";
     }
+    @GetMapping("/registrar")
+    public String registro(){
+        return "/auth/registro";
+    }
+
+    @GetMapping("/pass")
+    public String cambiopass(){
+        return "/seguridad/formpass";
+    }
+
     @GetMapping("/login-success")
     public String loginSuccess(){
         return "redirect:/auth/dashboard";
@@ -18,5 +35,11 @@ public class LoginController {
     @GetMapping("/dashboard")
     public String dashboard(){
         return "auth/home";
+    }
+    @RequestMapping(value="/logout", method= RequestMethod.POST)
+    public String closeSession(HttpSession session, Model model){
+        session.invalidate();
+        model.asMap().clear();
+        return "redirect:/login";
     }
 }
